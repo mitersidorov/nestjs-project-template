@@ -70,9 +70,7 @@ export class S3StorageService {
     this.assertConfigured();
 
     try {
-      await this.s3Client!.send(
-        new DeleteObjectCommand({ Bucket: this.bucket, Key: key }),
-      );
+      await this.s3Client!.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: key }));
       this.logger.info('File deleted from S3', { key, bucket: this.bucket });
     } catch (error) {
       this.logger.error(`S3 delete failed for key: ${key}`, error);
