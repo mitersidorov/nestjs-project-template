@@ -167,6 +167,20 @@ npm run test:e2e
 
 ---
 
+## Linting & Formatting
+
+```bash
+# Lint with auto-fix (ESLint)
+npm run lint
+
+# Format source files (Prettier)
+npm run format
+```
+
+ESLint config lives in `eslint.config.mjs`, Prettier config in `.prettierrc`. `printWidth` is set to `120` to match this codebase's existing line-length conventions, and `@typescript-eslint/no-explicit-any` is disabled to match its established use of `any` (see `noImplicitAny: false` in `tsconfig.json`).
+
+---
+
 ## Adding a Feature Module
 
 1. Create `src/<feature>/<feature>.module.ts` with controllers, services, and DTOs.
