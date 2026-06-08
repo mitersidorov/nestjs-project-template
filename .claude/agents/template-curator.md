@@ -60,8 +60,15 @@ A new file is the highest-cost option — most conventions are additions to some
 - Cross-reference related agents/skills the way `backend-architect` links to `nestjs-domain-scaffold` and `integration-pattern`.
 - Keep it as short as possible while staying unambiguous — these files load into every relevant task.
 
-## Step 5 — Note the Backport
+## Step 5 — Ship the Update
 
-If this repository is a service derived from the shared template (not the template itself), an update made here only helps this project. Tell the user:
+Only push template-level changes that clear the bar in Step 1 — a one-line fix doesn't need its own branch and PR; a new agent, architectural rule, or documented pattern does.
 
-> This looks like a template-level convention — consider backporting this change to the shared template repo so future services inherit it too.
+| Change type | Branch |
+|---|---|
+| Instructions only (`CLAUDE.md`, `.claude/agents/`, `.claude/skills/`) | A descriptively-named branch for the instruction work |
+| Template code (shared utils, DTOs, database helpers, common integrations) | `nestjs-template` |
+
+Push the branch to the template repo's `origin` and open a PR against `main`. **Do not merge to `main` yourself** — every change here is inherited by every project scaffolded from this template afterward, so a human reviews and merges it.
+
+If you're working inside a service derived from the template (not the template itself), you won't have push access to the upstream template repo — tell the user the change should be ported there via the same branch-and-PR flow, rather than attempting it yourself.
