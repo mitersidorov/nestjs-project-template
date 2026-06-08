@@ -69,6 +69,6 @@ Only push template-level changes that clear the bar in Step 1 — a one-line fix
 | Instructions only (`CLAUDE.md`, `.claude/agents/`, `.claude/skills/`) | A descriptively-named branch for the instruction work |
 | Template code (shared utils, DTOs, database helpers, common integrations) | `nestjs-template` |
 
-Push the branch to the template repo's `origin` and open a PR against `main`. **Do not merge to `main` yourself** — every change here is inherited by every project scaffolded from this template afterward, so a human reviews and merges it.
+Hand the commit, push, and PR off to the `repo-publisher` agent — it owns commit message format and PR mechanics. The merge to `main` is never automatic: every change here is inherited by every project scaffolded from this template afterward, so a human reviews and merges it.
 
 If you're working inside a service derived from the template (not the template itself), you won't have push access to the upstream template repo — tell the user the change should be ported there via the same branch-and-PR flow, rather than attempting it yourself.
