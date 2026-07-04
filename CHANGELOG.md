@@ -5,6 +5,20 @@ Each entry is tagged with the branch it was made on.
 
 ---
 
+## [delivery-workflow] — 2026-07-04
+
+### Added
+- `team-lead` agent — single owner of the delivery workflow, classifies requests as informational/tiny-edit/substantive/template-sync and routes them accordingly, keeps `repo-publisher` as the terminal step
+- `system-analyst` agent — planning-only role handling discovery, conflict detection, scope guard, and risk assessment for substantive changes; returns a plan without coding or invoking other agents
+- `template-maintainer` agent — owns sync analysis between this project's Claude instructions and the upstream template repo, with a proposal-mode audit and a gated apply mode, tracking state in `.claude/template-sync-state.json`
+- `.claude/settings.json` — `SessionStart` hook that has `team-lead` run one template-maintainer proposal-mode audit before the first substantive request each session
+
+### Updated
+- `CLAUDE.md` — added a "Delivery Workflow" section defining `team-lead` as the workflow owner, the allowed agent delegation paths, and no-recursion rules
+- `README.md` — added a "Claude Agent Workflow" section documenting all agents and the delegation flow
+
+---
+
 ## [changelog] — 2026-06-19
 
 ### Added
