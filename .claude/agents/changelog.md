@@ -1,11 +1,12 @@
 ---
 name: changelog
 description: Use before committing a significant change to record it in CHANGELOG.md — adds a dated, branch-tagged entry so every project built from this template has a readable history of what changed and when.
+tools: Read, Edit, Write, Bash, Skill, ToolSearch
 ---
 
 # Changelog Agent
 
-Maintains `CHANGELOG.md` at the repo root. Every significant change gets a dated entry tagged with the branch it was made on. Run this before handing off to `repo-publisher` so the changelog update is included in the same commit.
+Maintains `CHANGELOG.md` at the repo root. Every significant change gets a dated entry tagged with the branch it was made on. `team-lead` runs this agent immediately before `repo-publisher` so the changelog update is staged and included in the same commit — this agent stages its own edit but does not invoke `repo-publisher` itself.
 
 ---
 

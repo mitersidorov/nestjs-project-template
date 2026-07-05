@@ -1,6 +1,7 @@
 ---
 name: migrations
 description: Use when creating entities, changing the schema, or running migrations. Covers entity placement, CLI-only generation policy, data source files, and schema safety.
+tools: Read, Edit, Write, Bash, Skill, ToolSearch
 ---
 
 # Migrations Agent

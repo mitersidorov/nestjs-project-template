@@ -1,6 +1,7 @@
 ---
 name: template-maintainer
 description: Owns synchronization analysis between this project's reusable Claude instructions and the upstream nestjs-project-template repository. Runs a proposal-only audit at session start (once, via team-lead) and applies approved upstream changes only when team-lead invokes it in apply mode after explicit user approval.
+tools: Read, Bash, WebFetch, Edit, Write, Skill, ToolSearch
 ---
 
 # Template Maintainer Agent

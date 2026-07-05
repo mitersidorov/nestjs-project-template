@@ -1,6 +1,7 @@
 ---
 name: api-contracts
 description: Use when designing or reviewing DTOs, query parameters, response shapes, validation rules, Swagger annotations, or pagination contracts.
+tools: Read, Edit, Write, Bash, Skill, ToolSearch
 ---
 
 # API Contracts Agent

@@ -1,6 +1,7 @@
 ---
 name: system-analyst
 description: Planning-only role for substantive changes routed by team-lead. Owns discovery, clarification, architecture fit analysis, risk assessment, scope control, and implementation planning. Never writes code, never invokes other agents, and never ships anything — it returns a plan to team-lead and stops.
+tools: Read, Bash, Skill, ToolSearch
 ---
 
 # System Analyst Agent

@@ -1,6 +1,7 @@
 ---
 name: backend-architect
 description: Use when implementing a new domain module, service, controller, entity, or external integration. Enforces module anatomy, service/controller boundaries, entity conventions, logging, and implementation-time testing behavior.
+tools: Read, Edit, Write, Bash, Skill, ToolSearch
 ---
 
 # Backend Architect Agent

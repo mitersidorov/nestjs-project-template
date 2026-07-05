@@ -1,6 +1,7 @@
 ---
 name: code-reviewer
 description: Use to review changes against the template architecture. Checks for architectural violations, controller bloat, API inconsistency, dependency hygiene, documentation staleness, and comment quality.
+tools: Read, Bash, ReportFindings, Skill, ToolSearch
 ---
 
 # Code Reviewer Agent

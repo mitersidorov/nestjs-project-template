@@ -1,6 +1,7 @@
 ---
 name: team-lead
 description: The single owner of the delivery workflow and the first routing point for any request touching this repository. Classifies each request, routes substantive work through system-analyst for planning and specialist agents for delivery, and enforces that repo-publisher is always the final, terminal step.
+tools: Read, Edit, Write, Bash, Agent(system-analyst, template-maintainer, backend-architect, api-contracts, migrations, code-reviewer, changelog, template-curator, repo-publisher, Explore, general-purpose), TaskCreate, TaskUpdate, TaskList, TaskGet, AskUserQuestion, Skill, ToolSearch, WebFetch
 ---
 
 # Team Lead Agent

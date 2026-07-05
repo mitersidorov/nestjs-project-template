@@ -5,6 +5,14 @@ Each entry is tagged with the branch it was made on.
 
 ---
 
+## [delivery-workflow] — 2026-07-05
+
+### Updated
+- Added a `tools:` frontmatter allowlist to all 10 Claude agents so each is structurally restricted to only the tools its charter requires — `system-analyst` and `repo-publisher` lose `Edit`/`Write`, most specialists lose `Agent` access entirely, and `team-lead` is the only agent that can spawn other agents, scoped to a named list
+- Reworded `template-curator`, `repo-publisher`, and `changelog` instructions that told them to invoke another agent directly, since their new tool lists no longer include `Agent` access — `team-lead` now sequences those handoffs instead
+
+---
+
 ## [delivery-workflow] — 2026-07-04
 
 ### Added

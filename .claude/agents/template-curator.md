@@ -1,6 +1,7 @@
 ---
 name: template-curator
 description: Use after implementing a feature, integration, or pattern that doesn't fit an existing agent or skill, to decide whether it's a reusable template convention worth capturing — and if so, update CLAUDE.md, agents, or skills so every project built from this template inherits it.
+tools: Read, Edit, Write, Bash, Skill, ToolSearch
 ---
 
 # Template Curator Agent
@@ -69,6 +70,6 @@ Only push template-level changes that clear the bar in Step 1 — a one-line fix
 | Instructions only (`CLAUDE.md`, `.claude/agents/`, `.claude/skills/`) | A descriptively-named branch for the instruction work |
 | Template code (shared utils, DTOs, database helpers, common integrations) | `nestjs-template` |
 
-Hand the commit, push, and PR off to the `repo-publisher` agent — it owns commit message format and PR mechanics. The merge to `main` is never automatic: every change here is inherited by every project scaffolded from this template afterward, so a human reviews and merges it.
+Report the drafted update back to `team-lead`, which routes it through `code-reviewer` → `changelog` → `repo-publisher` — that agent owns commit message format and PR mechanics. The merge to `main` is never automatic: every change here is inherited by every project scaffolded from this template afterward, so a human reviews and merges it.
 
 If you're working inside a service derived from the template (not the template itself), you won't have push access to the upstream template repo — tell the user the change should be ported there via the same branch-and-PR flow, rather than attempting it yourself.
