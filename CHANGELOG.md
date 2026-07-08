@@ -5,6 +5,30 @@ Each entry is tagged with the branch it was made on.
 
 ---
 
+## [delivery-workflow] — 2026-07-08
+
+### Added
+- `qa-runner` agent — boots the app against a real Docker-based Postgres/Redis/MinIO stack (`docker-compose.test.yml`) to catch runtime issues static review can't, before a change ships
+- `coder` agent — merges the former `backend-architect`, `api-contracts`, and `migrations` agents into one full-stack implementation role covering modules, entities, API contracts, and migrations
+- Four hooks in `.claude/settings.json`: auto-lint on save, a confirmation guard before hand-editing generated migration files, a hard block on `git push --force`/`git commit --amend`, and a build+test verification gate before every push
+- A permission allowlist for recurring read-only/build commands (`npm test`, `npm run build`, `npx jest`, `npx tsc`) to cut down on approval prompts
+- A "Plan Conformance" section in the `backend-review-checklist` skill so `code-reviewer` checks a change against the `system-analyst` plan it was built from
+- `feature-implementation-workflow.puml` and its rendered `.png` — a full block-scheme diagram of the delivery workflow, embedded in `README.md`
+- A human commit/push approval gate on `repo-publisher`, separate from `team-lead`'s own pre-publish approval question
+
+### Updated
+- Merged the `changelog` agent's responsibilities directly into `team-lead` — it now writes `CHANGELOG.md` itself, after the user approves the change and immediately before publish
+- Merged `template-curator` into `template-maintainer`, which now owns both directions of template alignment: pulling upstream changes down (unchanged) and pushing new conventions up — the push direction no longer drafts a file change directly, it files a GitHub issue suggesting the update for a human to review instead
+- `CLAUDE.md`'s "Never Touch Without Explicit Request" rule now carves out `docker-compose.test.yml` as a `qa-runner`-owned exception to the Docker/deployment-config restriction
+- `README.md` — updated the agent table and delegation flow, added a "Local Verification (Docker)" section, and embedded the workflow diagram
+
+### Removed
+- `backend-architect`, `api-contracts`, and `migrations` agents (replaced by `coder`)
+- `changelog` agent (folded into `team-lead`)
+- `template-curator` agent (folded into `template-maintainer`)
+
+---
+
 ## [delivery-workflow] — 2026-07-05
 
 ### Updated
