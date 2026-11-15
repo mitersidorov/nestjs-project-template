@@ -5,10 +5,22 @@ Each entry is tagged with the branch it was made on.
 
 ---
 
+## [dev/nestjs-template-cleanup] — 2026-11-15
+
+### Added
+- Garage-based local S3-compatible storage configuration
+
+### Updated
+- Upgraded the template to NestJS 12 and TypeScript 6
+- Bumped the package version to 0.1.0
+
+### Removed
+- Removed Claude and Codex agent instructions and workflow assets
+
 ## [delivery-workflow] — 2026-07-08
 
 ### Added
-- `qa-runner` agent — boots the app against a real Docker-based Postgres/Redis/MinIO stack (`docker-compose.test.yml`) to catch runtime issues static review can't, before a change ships
+- `qa-runner` agent — boots the app against a real Docker-based Postgres/Redis/S3-compatible storage stack (`docker-compose.test.yml`) to catch runtime issues static review can't, before a change ships
 - `coder` agent — merges the former `backend-architect`, `api-contracts`, and `migrations` agents into one full-stack implementation role covering modules, entities, API contracts, and migrations
 - Four hooks in `.claude/settings.json`: auto-lint on save, a confirmation guard before hand-editing generated migration files, a hard block on `git push --force`/`git commit --amend`, and a build+test verification gate before every push
 - A permission allowlist for recurring read-only/build commands (`npm test`, `npm run build`, `npx jest`, `npx tsc`) to cut down on approval prompts
