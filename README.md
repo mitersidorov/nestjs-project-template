@@ -2,22 +2,20 @@
 
 A production-ready NestJS template with pre-wired infrastructure modules for rapid service development.
 
----
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | NestJS 11 (Express) |
-| Language | TypeScript 5.7 |
+| Framework | NestJS 12 (Express) |
+| Language | TypeScript 6 |
 | Database | PostgreSQL + TypeORM 0.3 |
 | Cache | Redis (ioredis) |
-| Object Storage | S3-compatible (MinIO locally) |
+| Object Storage | S3-compatible (Garage locally) |
 | Validation | class-validator + class-transformer |
 | Documentation | Swagger / OpenAPI |
 | Auth | API key guard |
 
----
 
 ## Project Structure
 
@@ -41,7 +39,6 @@ src/
 └── main.ts                # Bootstrap: CORS, ValidationPipe, Swagger
 ```
 
----
 
 ## Infrastructure Modules
 
@@ -86,22 +83,20 @@ Validates `X-API-KEY` header against `API_KEY` env var. Apply per-controller or 
 ### `HealthModule`
 Simple `GET /health` endpoint returning `appName`, `environment`, and `uptime`.
 
----
 
 ## Docker Secrets
 
 `loadDockerSecrets()` (called in `main.ts` and `database.module.ts`) reads files from `/run/secrets/` and injects them as environment variables. Existing env vars take precedence, so it is safe to call multiple times.
 
----
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 22+
+- Node.js 24.15+ for development and tests. The Nest CLI also supports Node.js 22.22.3+; runtime-only deployments can use Node.js 22.12+.
 - PostgreSQL
 - Redis
-- MinIO (optional, for S3 functionality)
+- Garage (optional, for local S3-compatible storage)
 
 ### Setup
 
@@ -119,6 +114,8 @@ npm run migration:run
 npm run start:dev
 ```
 
+To start the local Garage object storage service, run `docker compose -f docker-compose.test.yml up -d garage`. The sample S3 credentials in `.env.example` are for local development only; do not reuse them in production.
+
 ### Swagger UI
 
 Available at: [http://localhost:3000/docs](http://localhost:3000/docs)
@@ -129,7 +126,6 @@ Available at: [http://localhost:3000/docs](http://localhost:3000/docs)
 GET /health
 ```
 
----
 
 ## Database Migrations
 
@@ -147,7 +143,6 @@ npm run migration:revert
 npm run migration:show
 ```
 
----
 
 ## Testing
 
@@ -165,7 +160,6 @@ npm run test:cov
 npm run test:e2e
 ```
 
----
 
 ## Linting & Formatting
 
@@ -179,7 +173,6 @@ npm run format
 
 ESLint config lives in `eslint.config.mjs`, Prettier config in `.prettierrc`. `printWidth` is set to `120` to match this codebase's existing line-length conventions, and `@typescript-eslint/no-explicit-any` is disabled to match its established use of `any` (see `noImplicitAny: false` in `tsconfig.json`).
 
----
 
 ## Adding a Feature Module
 
@@ -188,39 +181,7 @@ ESLint config lives in `eslint.config.mjs`, Prettier config in `.prettierrc`. `p
 3. Register the module in `AppModule`.
 4. Generate a migration for any new entities: `npm run migration:generate -- src/migrations/AddFeature`.
 
----
 
-## Claude Agent Workflow
-
-This repo uses a role-based set of Claude Code agents under `.claude/agents/`. `team-lead` is the single entry point and workflow owner for any request; it classifies the request and routes accordingly:
-
-| Agent | Role |
-|---|---|
-| `team-lead` | Entry point and workflow owner. Classifies requests, orchestrates the rest, updates `CHANGELOG.md` itself, and asks the user to approve the change before it ships. |
-| `system-analyst` | Planning-only: discovery, conflict/risk analysis, scope, and an implementation plan. No code, no commits. |
-| `template-maintainer` | Owns both directions of template alignment: compares this project's agents/skills/instructions against the upstream template and proposes (or, once approved, applies) updates, and judges whether a new convention this project just built belongs in the shared template instructions. |
-| `coder` | Implementation specialist for modules, entities, API contracts, and migrations. |
-| `code-reviewer` | Reviews changes against template architecture. |
-| `qa-runner` | Boots the app against a real Docker-based Postgres/Redis/MinIO stack (`docker-compose.test.yml`) to catch runtime issues static review can't. |
-| `repo-publisher` | Terminal step: confirms with the user, then commits, pushes, and opens a PR. Never merges. |
-
-Delegation always flows `team-lead → system-analyst → team-lead → specialists → code-reviewer → qa-runner → team-lead → repo-publisher` (or `team-lead → template-maintainer → team-lead → ...` for template sync). A session-start hook prompts `team-lead` to run one `template-maintainer` audit per session. See `CLAUDE.md` for the full orchestration rules.
-
-The full block scheme (source: `feature-implementation-workflow.puml`):
-
-![New feature implementation workflow](feature_implementation_workflow.png)
-
-## Local Verification (Docker)
-
-`docker-compose.test.yml` at the repo root spins up Postgres, Redis, and MinIO plus the app itself for real runtime verification before a change ships — owned by the `qa-runner` agent, separate from the mock-based unit tests in `minimal-test-strategy`.
-
-```bash
-docker compose -f docker-compose.test.yml up -d --wait
-docker compose -f docker-compose.test.yml logs
-docker compose -f docker-compose.test.yml down -v
-```
-
----
 
 ## Environment Variables
 
